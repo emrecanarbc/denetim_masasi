@@ -1,6 +1,6 @@
 # Denetim Masası
 
-İç denetim ekibi için görev, denetim akışı, form (ek), kanıt ve bulgu takibi platformunun **prototipi**. Yalnızca iç denetçiler kullanır; sistem başka birimlere bir şey göndermez, birimle iletişimi denetçiler kurar.
+İç denetim ekibi için görev, denetim akışı, form (ek), kanıt ve bulgu takibi platformunun **prototipi**. Yalnızca iç denetçi kullanımı içindir; sistem başka birimlere bir şey göndermez, birimle iletişimi denetçiler kurar.
 
 Prototip tek başına tarayıcıda çalışır: sunucu, veritabanı veya kurulum gerekmez. Tüm veriler **kurgusaldır**: kurum adı (ÖRNEK DAĞITIM A.Ş.), kişiler, denetim evreni ve makro risk puanları temsili olarak üretilmiştir.
 
