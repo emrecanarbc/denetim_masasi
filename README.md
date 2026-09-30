@@ -47,7 +47,7 @@ Prototip sunucusuz olduğu için gerçek gönderim bir **webhook** ile yapılır
 1. Power Automate'te yeni bir *Anlık bulut akışı* oluşturun, tetikleyici: **When a HTTP request is received**.
 2. İstek gövdesi şeması: `{"type":"object","properties":{"to":{"type":"string"},"subject":{"type":"string"},"body":{"type":"string"},"html":{"type":"string"}}}`
 3. Eylem ekleyin: **Office 365 Outlook → Send an email (V2)**; Alıcı = `to`, Konu = `subject`, Gövde = `html`.
-4. Kaydedince oluşan HTTP POST adresini `js/09-eposta-bildirimleri.js` içindeki `MAIL_AYAR.webhook` alanına yazın.
+4. Kaydedince oluşan HTTP POST adresini `09-eposta-bildirimleri.js` içindeki `MAIL_AYAR.webhook` alanına yazın.
 
 İstek `text/plain` içerik türüyle gönderilir (tarayıcı kısıtı); akış gövdeyi JSON olarak okumazsa ayrıştırma için `json(triggerBody())` ifadesini kullanın. Webhook adresi, adrese sahip herkesin e-posta göndermesine izin verir; herkese açık bir depoya gerçek adresi yazmayın. Kurumsal sürümde gönderim sunucu tarafında kurum e-posta sunucusu (SMTP / Exchange) üzerinden yapılmalıdır.
 
@@ -58,21 +58,21 @@ Her denetimde üzerinde çalışılan dosyalar (Excel, CSV, PDF, Word, görsel) 
 ## Dosya yapısı
 
 ```
-index.html                       Sayfa iskeleti; script'leri sırayla yükler
-css/styles.css                   Tüm stiller (açık / koyu tema)
-js/01-yardimcilar-ve-veri.js     Yardımcı fonksiyonlar, sabitler, form tanımları, örnek veri (seed)
-js/02-belge-uretimi.js           Word (docx) ve PDF üretimi, önizleme
-js/03-durum-ve-kurallar.js       Uygulama durumu, aşama kuralları, belge içerikleri (rapor, formlar)
-js/04-gorunumler.js              Ekranlar (panel, denetim, formlar, bulgu, görevler, izleme, plan…)
-js/05-denetim-evreni.js          Denetim evreni: süreçler, alt süreçler, makro risk puanları (temsili)
-js/06-konu-sablonlari.js         Konu şablonları: risk matrisi satırları, belge listeleri, amaç metinleri
-js/07-yeni-denetim.js            Yeni denetim sihirbazı ve eklere ön doldurma
-js/08-kanitlar.js                Kanıtlar bölümü (dosya saklama, önizleme, sürümler)
-js/09-eposta-bildirimleri.js     E-posta bildirimleri: tercihler, giden kutusu, günlük özet, webhook
-js/10-etkilesimler.js            Buton işlemleri ve olay dinleyicileri; uygulamayı başlatır
+index.html                   Sayfa iskeleti; script'leri sırayla yükler
+styles.css                   Tüm stiller (açık / koyu tema)
+01-yardimcilar-ve-veri.js    Yardımcı fonksiyonlar, sabitler, form tanımları, örnek veri (seed)
+02-belge-uretimi.js          Word (docx) ve PDF üretimi, önizleme
+03-durum-ve-kurallar.js      Uygulama durumu, aşama kuralları, belge içerikleri (rapor, formlar)
+04-gorunumler.js             Ekranlar (panel, denetim, formlar, bulgu, görevler, izleme, plan…)
+05-denetim-evreni.js         Denetim evreni: süreçler, alt süreçler, makro risk puanları (temsili)
+06-konu-sablonlari.js        Konu şablonları: risk matrisi satırları, belge listeleri, amaç metinleri
+07-yeni-denetim.js           Yeni denetim sihirbazı ve eklere ön doldurma
+08-kanitlar.js               Kanıtlar bölümü (dosya saklama, önizleme, sürümler)
+09-eposta-bildirimleri.js    E-posta bildirimleri: tercihler, giden kutusu, günlük özet, webhook
+10-etkilesimler.js           Buton işlemleri ve olay dinleyicileri; uygulamayı başlatır
 ```
 
-Dosyalar `index.html`'deki sırayla yüklenmelidir; sonraki dosyalar öncekilerdeki fonksiyonları kullanır. Derleme (build) adımı yoktur.
+Tüm dosyalar deponun ana dizinindedir ve `index.html`'deki sırayla yüklenmelidir; sonraki dosyalar öncekilerdeki fonksiyonları kullanır. Derleme (build) adımı yoktur.
 
 ## Verinin tutulduğu yer (prototip)
 
@@ -83,11 +83,11 @@ Dosyalar `index.html`'deki sırayla yüklenmelidir; sonraki dosyalar öncekilerd
 
 ## Sık yapılacak değişiklikler
 
-- **Yeni konu şablonu eklemek:** `js/06-konu-sablonlari.js` içindeki `KONU_SABLON` dizisine aynı biçimde bir kayıt ekleyin (`s` alanı `05-denetim-evreni.js`'deki süreç adıyla aynı olmalı).
-- **Denetim evrenini güncellemek:** `js/05-denetim-evreni.js` içindeki `EVREN` listesini makro risk değerlendirmesine göre güncelleyin.
-- **Kullanıcılar, plan ve örnek veriler:** `js/01-yardimcilar-ve-veri.js` içindeki `seed()` fonksiyonu.
-- **E-posta ayarları:** `js/09-eposta-bildirimleri.js` içindeki `MAIL_AYAR` (webhook, gönderen adı, özet saati).
-- **Form alanları:** `js/01-yardimcilar-ve-veri.js` içindeki `FORMS` tanımları.
+- **Yeni konu şablonu eklemek:** `06-konu-sablonlari.js` içindeki `KONU_SABLON` dizisine aynı biçimde bir kayıt ekleyin (`s` alanı `05-denetim-evreni.js`'deki süreç adıyla aynı olmalı).
+- **Denetim evrenini güncellemek:** `05-denetim-evreni.js` içindeki `EVREN` listesini makro risk değerlendirmesine göre güncelleyin.
+- **Kullanıcılar, plan ve örnek veriler:** `01-yardimcilar-ve-veri.js` içindeki `seed()` fonksiyonu.
+- **E-posta ayarları:** `09-eposta-bildirimleri.js` içindeki `MAIL_AYAR` (webhook, gönderen adı, özet saati).
+- **Form alanları:** `01-yardimcilar-ve-veri.js` içindeki `FORMS` tanımları.
 
 Değişiklikten sonra tarayıcıda **Demo verisini sıfırla** ile örnek veriyi yeniden yükleyin.
 
